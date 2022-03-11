@@ -5,22 +5,28 @@ interface IMessage {
 
 interface IProps {
   message: IMessage
-  position: string
   bgColor?: string
+  position: string
 }
 
-const DisplayText = ({ message, position, bgColor }: IProps) => {
+const DisplayText = ({ message, bgColor, position }: IProps) => {
   return (
-    <div>
-      {message.text} {message.time}
+    <div className="main">
+      <div>{message.text}</div>
+      <div className="child">{message.time}</div>
       <style jsx>{`
-        div {
-          font-size: 30px;
+        .main {
+          width: 30vw;
           padding: 2%;
-          float: ${position === "left" ? "left" : "right"};
           background-color: ${bgColor ? bgColor : "#A9A9A9"};
-          border-radius: 15px;
-          margin: 0 0 2% 0;
+          border-radius: 18px;
+          margin: 1% 0;
+          float: ${position === "sent" ? "right" : "left"};
+        }
+        .child {
+          color: grey;
+          float: right;
+          font-size: 0.8rem;
         }
       `}</style>
     </div>

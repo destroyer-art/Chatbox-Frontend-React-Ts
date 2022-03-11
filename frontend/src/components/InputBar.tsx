@@ -15,7 +15,6 @@ const InputBar = ({ placeholder, type, icon, bgColor }: IProps) => {
       <FontAwesomeIcon
         icon={icon}
         style={{
-          fontSize: "30px",
           position: "absolute",
           right: "5%",
           top: "30%",
@@ -30,14 +29,14 @@ const InputBar = ({ placeholder, type, icon, bgColor }: IProps) => {
           max-height: 10vh;
         }
         input {
-          font-size: 2rem;
+          font-size: 1.2rem;
           width: 100%;
           padding: 3%;
           border: hidden;
           background-color: ${bgColor ? bgColor : "transparent"};
         }
         input:hover {
-          border: 5px solid red;
+          border: 3px solid green;
         }
       `}</style>
     </div>

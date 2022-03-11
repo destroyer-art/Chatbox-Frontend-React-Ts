@@ -1,5 +1,5 @@
 import { defaultImageUrl } from "@api/get-contact"
-import { messageUserA, messageUserB } from "@api/get-message"
+import { messages } from "@api/get-message"
 import DisplayText from "@components/DisplayText"
 import InputBar from "@components/InputBar"
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
@@ -8,25 +8,18 @@ const Conversation = () => {
   return (
     <div className="conversation">
       <div className="topBar">
-        <img src={defaultImageUrl} alt="Profile picture" />
+        <img src={defaultImageUrl} alt="User picture" />
         <span>User A</span>
       </div>
       <div className="messageBar">
-        {messageUserA.map((message, index) => (
-          <DisplayText
-            message={message}
-            position={"right"}
-            key={"displayText" + index}
-          />
-        ))}
-
-        {messageUserB.map((message, index) => (
-          <DisplayText
-            message={message}
-            position={"left"}
-            bgColor="#C0C0C0"
-            key={"displayText" + index}
-          />
+        {messages.map((message, index) => (
+          <div className={message.type}>
+            <DisplayText
+              message={message}
+              key={"displayText" + index}
+              position={message.type}
+            />
+          </div>
         ))}
       </div>
       <div className="inputBar">
@@ -66,7 +59,11 @@ const Conversation = () => {
 
         .messageBar {
           padding: 1%;
+          diplay: flex;
+          flex-direction: column;
+          word-wrap: break-word;
         }
+
         @media only screen and (max-width: 700px) {
           .conversation {
             display: none;
