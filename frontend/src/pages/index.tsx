@@ -1,16 +1,26 @@
 import Conversation from "@features/Conversation"
-import UserLog from "@features/UserLog"
+import Contacts from "@features/Contacts"
+import Header from "@features/Header"
 
 const Index = () => {
   return (
-    <div className="index">
-      <UserLog />
-      <Conversation icon={""} nickName={""} quote={""} />
+    <div className="container">
+      <Header />
+      <div className="chatbox">
+        <Contacts />
+        <Conversation />
+      </div>
       <style jsx>{`
-        .index {
+        .container {
+          height: 80vh;
+          margin: auto;
+          background-color: white;
+          margin: 5%;
+        }
+        .chatbox {
           display: flex;
           flex-direction: row;
-          margin: 5%;
+          height: 100%;
         }
       `}</style>
     </div>

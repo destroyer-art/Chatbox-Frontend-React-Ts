@@ -1,14 +1,21 @@
-interface IUserLists {
-  icon: string
-  nickName: string
-  quote: string
-}
-
-const Conversation = ({ icon, nickName, quote }: IUserLists) => {
+const Conversation = () => {
   return (
     <div className="conversation">
-      <h1>Conversation</h1>
-      <style jsx>{``}</style>
+      {/* <User />
+      <Message />
+      <Typing /> */}
+      <style jsx>{`
+        .conversation {
+          background: -webkit-linear-gradient(
+            360deg,
+            #1c1c1c 10%,
+            #494949 360%
+          );
+          background: -moz-linear-gradient(360deg, #1c1c1c 10%, #494949 360%);
+          background: linear-gradient(360deg, #1c1c1c 10%, #494949 360%);
+          width: 80%;
+        }
+      `}</style>
     </div>
   )
 }

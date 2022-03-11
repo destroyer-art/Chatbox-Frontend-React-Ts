@@ -1,21 +1,23 @@
+import SearchInput from "@components/SearchInput"
 import UserLists from "@components/UserLists"
 
-const UserLog = () => {
+const Contacts = () => {
   const users = [
     {
-      icon: "A",
-      nickName: "A",
-      quote: "Love life",
-    },
-    {
-      icon: "A",
-      nickName: "B",
+      icon: "",
+      nickName: "Anna Bru",
       quote: "Love beach",
     },
+    {
+      icon: "",
+      nickName: "Bathman",
+      quote: "Love life",
+    },
   ]
+
   return (
-    <div className="userLog">
-      <input type="text" name="user" id="user" placeholder="Search users" />
+    <div className="contact">
+      <SearchInput />
       {users.map((user, index) => (
         <UserLists
           icon={user.icon}
@@ -25,9 +27,9 @@ const UserLog = () => {
         />
       ))}
       <style jsx>{`
-        .userLog {
+        .contact {
           width: 20%;
-          border-right: solid grey;
+          background: white;
         }
 
         input {
@@ -38,4 +40,4 @@ const UserLog = () => {
   )
 }
 
-export default UserLog
+export default Contacts
