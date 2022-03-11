@@ -1,15 +1,14 @@
 interface IMessage {
   text: string
   time: string
+  type: string
 }
 
 interface IProps {
   message: IMessage
-  bgColor?: string
-  position: string
 }
 
-const DisplayText = ({ message, bgColor, position }: IProps) => {
+const DisplayText = ({ message }: IProps) => {
   return (
     <div className="main">
       <div>{message.text}</div>
@@ -18,10 +17,10 @@ const DisplayText = ({ message, bgColor, position }: IProps) => {
         .main {
           width: 30vw;
           padding: 2%;
-          background-color: ${bgColor ? bgColor : "#A9A9A9"};
+          background-color: ${message.type === "sent" ? "#F1F5F5" : "#A9A9A9"};
           border-radius: 18px;
           margin: 1% 0;
-          float: ${position === "sent" ? "right" : "left"};
+          float: ${message.type === "sent" ? "right" : "left"};
         }
         .child {
           color: grey;

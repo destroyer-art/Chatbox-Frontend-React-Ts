@@ -14,11 +14,7 @@ const Conversation = () => {
       <div className="messageBar">
         {messages.map((message, index) => (
           <div className={message.type}>
-            <DisplayText
-              message={message}
-              key={"displayText" + index}
-              position={message.type}
-            />
+            <DisplayText message={message} key={"displayText" + index} />
           </div>
         ))}
       </div>
