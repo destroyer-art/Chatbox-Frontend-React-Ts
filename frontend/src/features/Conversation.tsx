@@ -8,7 +8,7 @@ const Conversation = () => {
   return (
     <div className="conversation">
       <div className="topBar">
-        <img src={defaultImageUrl} alt="User picture" />
+        <img src={defaultImageUrl} alt="User pictures" />
         <span>User A</span>
       </div>
       <div className="messageBar">
