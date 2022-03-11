@@ -1,3 +1,5 @@
+import { defaultImageUrl } from "@api/get-contact"
+
 interface IUserLists {
   icon: string
   nickName: string
@@ -5,9 +7,7 @@ interface IUserLists {
 }
 
 const UserLists = ({ icon, nickName, quote }: IUserLists) => {
-  const imageUrl = icon
-    ? icon
-    : "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"
+  const imageUrl = icon ? icon : defaultImageUrl
   return (
     <div>
       <div className="contact">
@@ -27,19 +27,31 @@ const UserLists = ({ icon, nickName, quote }: IUserLists) => {
         }
         img {
           border-radius: 50%;
-          width: 30%;
+          max-width: 30%;
         }
         .contact-details {
-          margin: 8%;
-          word-wrap: break-word;
-          width: 50%;
+          margin: 8% 1%;
+          max-width: 20vw;
         }
         .name {
           font-size: 1.5rem;
           margin-bottom: 5%;
         }
         .desc {
-          color: #d3d3d3;
+          color: grey;
+        }
+        @media only screen and (max-width: 700px) {
+          .desc {
+            font-size: 1.5rem;
+          }
+
+          .contact-details {
+            max-width: 60vw;
+          }
+
+          img {
+            height: 20%;
+          }
         }
       `}</style>
     </div>

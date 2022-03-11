@@ -13,14 +13,21 @@ const Index = () => {
       <style jsx>{`
         .container {
           height: 80vh;
-          margin: auto;
           background-color: white;
           margin: 5%;
         }
+
         .chatbox {
           display: flex;
           flex-direction: row;
           height: 100%;
+        }
+
+        @media only screen and (max-width: 700px) {
+          .container {
+            height: 100vh;
+            margin: auto;
+          }
         }
       `}</style>
     </div>

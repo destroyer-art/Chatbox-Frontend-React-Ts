@@ -5,7 +5,13 @@ interface IProps {
 const Heading = ({ text }: IProps) => {
   return (
     <div>
-      <h1>{text}</h1>
+      {text}
+      <style jsx>{`
+        div {
+          font-size: 30px;
+          padding: 0 5%;
+        }
+      `}</style>
     </div>
   )
 }

@@ -1,28 +1,29 @@
 import Heading from "@components/Heading"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSliders } from "@fortawesome/free-solid-svg-icons"
 
 const Header = () => {
+  const header = "Chat Box"
   return (
     <div className="header">
-      <Heading text={"Chat Box App"} />
-      <div className="right">Settings</div>
+      <Heading text={header} />
+      <div className="right">
+        <FontAwesomeIcon icon={faSliders} style={{ fontSize: "30px" }} />
+      </div>
       <style jsx>{`
         .header {
-          background: -webkit-linear-gradient(
-            360deg,
-            #fd6f46 10%,
-            #fb9832 360%
-          ); /* Chrome 10+, Saf5.1+ */
-          background: -moz-linear-gradient(
-            360deg,
-            #fd6f46 10%,
-            #fb9832 360%
-          ); /* FF3.6+ */
-          background: linear-gradient(360deg, #fd6f46 10%, #fb9832 360%);
-          padding: 0.025% 1%;
+          background-color: #282a35;
+          padding: 1%;
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-end;
+          font-size: 20px;
+          color: white;
         }
-        .right {
+
+        @media only screen and (max-width: 700px) {
+          .header {
+            padding: 5%;
+          }
         }
       `}</style>
     </div>

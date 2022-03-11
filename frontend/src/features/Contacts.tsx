@@ -1,23 +1,17 @@
-import SearchInput from "@components/SearchInput"
+import { users } from "@api/get-contact"
+import InputBar from "@components/InputBar"
 import UserLists from "@components/UserLists"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
 const Contacts = () => {
-  const users = [
-    {
-      icon: "",
-      nickName: "Anna Bru",
-      quote: "Love beach",
-    },
-    {
-      icon: "",
-      nickName: "Bathman",
-      quote: "Love life",
-    },
-  ]
-
   return (
     <div className="contact">
-      <SearchInput />
+      <InputBar
+        placeholder={"Search User ..."}
+        type={"search"}
+        icon={faSearch}
+        bgColor="#F5F5F5"
+      />
       {users.map((user, index) => (
         <UserLists
           icon={user.icon}
@@ -28,12 +22,24 @@ const Contacts = () => {
       ))}
       <style jsx>{`
         .contact {
-          width: 20%;
-          background: white;
+          width: 40%;
+          height: 100%;
+          background-color: white;
         }
+        @media only screen and (max-width: 700px) {
+          .container {
+            height: 100vh;
+            margin: auto;
+            background-color: white;
+            margin: auto;
+          }
+          .contact {
+            width: 100%;
+          }
 
-        input {
-          width: 80%;
+          .conversation {
+            width: 0%;
+          }
         }
       `}</style>
     </div>
