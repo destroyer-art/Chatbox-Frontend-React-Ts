@@ -8,7 +8,7 @@ interface IProps {
   bgColor?: string
   handleInput: () => void
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  inputVal: string
+  inputVal?: string
 }
 
 const InputBar = ({
