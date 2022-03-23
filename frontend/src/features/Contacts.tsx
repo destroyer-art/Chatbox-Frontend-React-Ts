@@ -1,11 +1,11 @@
-import { users } from "@api/get-contact"
-import InputBar from "@components/InputBar"
-import UserLists from "@components/UserLists"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { users } from "@api/get-contact";
+import InputBar from "@components/InputBar";
+import UserLists from "@components/UserLists";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Contacts = () => {
   // todo search function
-  const handleInput = () => console.log("search")
+  const handleInput = () => console.log("search");
   return (
     <div className="contact">
       <InputBar
@@ -38,16 +38,12 @@ const Contacts = () => {
             margin: auto;
           }
           .contact {
-            width: 100%;
-          }
-
-          .conversation {
-            width: 0%;
+            display: none;
           }
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Contacts
+export default Contacts;

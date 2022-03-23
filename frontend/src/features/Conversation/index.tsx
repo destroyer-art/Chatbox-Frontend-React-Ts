@@ -1,34 +1,34 @@
-import { defaultImageUrl } from "@api/get-contact"
-import { socket } from "@api/socket"
-import { useAppDispatch, useAppSelector } from "@app/hook"
-import DisplayText from "@components/DisplayText"
-import InputBar from "@components/InputBar"
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
-import { Dispatch } from "@reduxjs/toolkit"
-import { useEffect, useState } from "react"
-import { add, selectConversation } from "./Slice"
+import { defaultImageUrl } from "@api/get-contact";
+import { socket } from "@api/socket";
+import { useAppDispatch, useAppSelector } from "@app/hook";
+import DisplayText from "@components/DisplayText";
+import InputBar from "@components/InputBar";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { Dispatch } from "@reduxjs/toolkit";
+import { useEffect, useState } from "react";
+import { add, selectConversation } from "./Slice";
 
 const Conversation = () => {
-  const msgText = useAppSelector(selectConversation)
-  const dispatch: Dispatch<any> = useAppDispatch()
-  const [inputMsg, setInputMsg] = useState("")
+  const msgText = useAppSelector(selectConversation);
+  const dispatch: Dispatch<any> = useAppDispatch();
+  const [inputMsg, setInputMsg] = useState("");
   const handleMessage = () => {
-    socket.emit("msgToServer", inputMsg)
-    setInputMsg("")
-  }
+    socket.emit("msgToServer", inputMsg);
+    setInputMsg("");
+  };
 
   useEffect(() => {
-    const handler = (message: string) => dispatch(add(message))
-    socket.on("msgToClient", handler)
+    const handler = (message: string) => dispatch(add(message));
+    socket.on("msgToClient", handler);
     return () => {
-      socket.off("msgToClient", handler)
-    }
-  }, [])
+      socket.off("msgToClient", handler);
+    };
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.value) return
-    setInputMsg(event.target.value)
-  }
+    if (!event.target.value) return;
+    setInputMsg(event.target.value);
+  };
   return (
     <div className="conversation">
       <div className="topBar">
@@ -89,12 +89,12 @@ const Conversation = () => {
 
         @media only screen and (max-width: 700px) {
           .conversation {
-            display: none;
+            width: 100%;
           }
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Conversation
+export default Conversation;
