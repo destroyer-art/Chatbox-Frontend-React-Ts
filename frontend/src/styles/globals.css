@@ -5,3 +5,8 @@ html {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 }
+
+svg:hover {
+  cursor: pointer;
+  font-size: 2rem;
+}

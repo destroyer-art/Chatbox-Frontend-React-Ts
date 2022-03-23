@@ -1,11 +1,7 @@
-interface IMessage {
-  text: string
-  time: string
-  type: string
-}
+import { IConversationState } from "@features/Conversation/State"
 
 interface IProps {
-  message: IMessage
+  message: IConversationState
 }
 
 const DisplayText = ({ message }: IProps) => {

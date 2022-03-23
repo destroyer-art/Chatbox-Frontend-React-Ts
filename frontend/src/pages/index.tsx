@@ -1,4 +1,4 @@
-import Conversation from "@features/Conversation"
+import Conversation from "@features/Conversation/index"
 import Contacts from "@features/Contacts"
 import Header from "@features/Header"
 

@@ -4,6 +4,8 @@ import UserLists from "@components/UserLists"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
 const Contacts = () => {
+  // todo search function
+  const handleInput = () => console.log("search")
   return (
     <div className="contact">
       <InputBar
@@ -11,6 +13,8 @@ const Contacts = () => {
         type={"search"}
         icon={faSearch}
         bgColor="#F5F5F5"
+        handleInput={() => handleInput}
+        handleChange={() => handleInput}
       />
       {users.map((user, index) => (
         <UserLists

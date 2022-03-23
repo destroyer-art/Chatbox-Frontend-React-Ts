@@ -6,12 +6,28 @@ interface IProps {
   type: string
   icon: IconDefinition
   bgColor?: string
+  handleInput: () => void
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  inputVal: string
 }
 
-const InputBar = ({ placeholder, type, icon, bgColor }: IProps) => {
+const InputBar = ({
+  placeholder,
+  type,
+  icon,
+  bgColor,
+  handleInput,
+  handleChange,
+  inputVal,
+}: IProps) => {
   return (
     <div className="main">
-      <input type={type} placeholder={placeholder} />
+      <input
+        type={type}
+        placeholder={placeholder}
+        onChange={handleChange}
+        value={inputVal}
+      />
       <FontAwesomeIcon
         icon={icon}
         style={{
@@ -19,6 +35,7 @@ const InputBar = ({ placeholder, type, icon, bgColor }: IProps) => {
           right: "5%",
           top: "30%",
         }}
+        onClick={handleInput}
       />
 
       <style jsx>{`

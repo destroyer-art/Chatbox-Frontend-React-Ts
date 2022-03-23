@@ -24,7 +24,8 @@
       "@components/*": ["src/components/*"],
       "@features/*": ["src/features/*"],
       "@styles/*": ["src/styles/*"],
-      "@api/*": ["src/api/*"]
+      "@api/*": ["src/api/*"],
+      "@app/*": ["src/app/*"]
     }
   },
   "include": ["src/**/*"],

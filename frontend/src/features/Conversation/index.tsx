@@ -1,10 +1,34 @@
 import { defaultImageUrl } from "@api/get-contact"
-import { messages } from "@api/get-message"
+import { socket } from "@api/socket"
+import { useAppDispatch, useAppSelector } from "@app/hook"
 import DisplayText from "@components/DisplayText"
 import InputBar from "@components/InputBar"
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
+import { Dispatch } from "@reduxjs/toolkit"
+import { useEffect, useState } from "react"
+import { add, selectConversation } from "./Slice"
 
 const Conversation = () => {
+  const msgText = useAppSelector(selectConversation)
+  const dispatch: Dispatch<any> = useAppDispatch()
+  const [inputMsg, setInputMsg] = useState("")
+  const handleMessage = () => {
+    socket.emit("msgToServer", inputMsg)
+    setInputMsg("")
+  }
+
+  useEffect(() => {
+    const handler = (message: string) => dispatch(add(message))
+    socket.on("msgToClient", handler)
+    return () => {
+      socket.off("msgToClient", handler)
+    }
+  }, [])
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.value) return
+    setInputMsg(event.target.value)
+  }
   return (
     <div className="conversation">
       <div className="topBar">
@@ -12,9 +36,9 @@ const Conversation = () => {
         <span>User A</span>
       </div>
       <div className="messageBar">
-        {messages.map((message, index) => (
-          <div className={message.type}>
-            <DisplayText message={message} key={"displayText" + index} />
+        {msgText.map((message, index) => (
+          <div className={message.type} key={"displayText" + index}>
+            <DisplayText message={message} />
           </div>
         ))}
       </div>
@@ -23,7 +47,10 @@ const Conversation = () => {
           placeholder={"Type new message ..."}
           type={"text"}
           bgColor={"#cccfbc"}
-          icon={faArrowRightFromBracket}
+          icon={faPaperPlane}
+          handleInput={handleMessage}
+          handleChange={handleChange}
+          inputVal={inputMsg}
         />
       </div>
 
@@ -69,4 +96,5 @@ const Conversation = () => {
     </div>
   )
 }
+
 export default Conversation
