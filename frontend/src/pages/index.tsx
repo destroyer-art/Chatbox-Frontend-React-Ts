@@ -1,6 +1,6 @@
-import Conversation from "@features/Conversation/index"
-import Contacts from "@features/Contacts"
-import Header from "@features/Header"
+import Conversation from "@features/Conversation/index";
+import Contacts from "@features/Contacts";
+import Header from "@features/Header";
 
 const Index = () => {
   return (
@@ -12,9 +12,11 @@ const Index = () => {
       </div>
       <style jsx>{`
         .container {
-          height: 80vh;
-          background-color: white;
-          margin: 5%;
+          margin: 3rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: calc(100% - 6rem);
         }
 
         .chatbox {
@@ -25,13 +27,13 @@ const Index = () => {
 
         @media only screen and (max-width: 700px) {
           .container {
-            height: 100vh;
-            margin: auto;
+            margin: 0%;
+            height: calc(100%);
           }
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

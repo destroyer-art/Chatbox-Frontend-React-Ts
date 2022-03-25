@@ -1,29 +1,36 @@
 import { defaultImageUrl } from "@api/get-contact";
+import { getHistory } from "@api/get-message";
 import { socket } from "@api/socket";
 import { useAppDispatch, useAppSelector } from "@app/hook";
 import DisplayText from "@components/DisplayText";
 import InputBar from "@components/InputBar";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch } from "@reduxjs/toolkit";
+import { get } from "http";
+import type { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { add, selectConversation } from "./Slice";
+import { IConversationState } from "./State";
 
 const Conversation = () => {
   const msgText = useAppSelector(selectConversation);
+  const [history, setHistory] = useState(msgText);
   const dispatch: Dispatch<any> = useAppDispatch();
   const [inputMsg, setInputMsg] = useState("");
-  const handleMessage = () => {
+  const handleMessage = async () => {
     socket.emit("msgToServer", inputMsg);
     setInputMsg("");
   };
 
+  const initalProp = async () => await getHistory();
   useEffect(() => {
+    initalProp().then((res) => setHistory((prev) => [...res, ...msgText]));
     const handler = (message: string) => dispatch(add(message));
     socket.on("msgToClient", handler);
     return () => {
       socket.off("msgToClient", handler);
     };
-  }, []);
+  }, [history]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.value) return;
@@ -36,11 +43,13 @@ const Conversation = () => {
         <span>User A</span>
       </div>
       <div className="messageBar">
-        {msgText.map((message, index) => (
-          <div className={message.type} key={"displayText" + index}>
-            <DisplayText message={message} />
-          </div>
-        ))}
+        {history.length > 0
+          ? history.map((message, index) => (
+              <div key={"displayText" + index}>
+                <DisplayText message={message} />
+              </div>
+            ))
+          : null}
       </div>
       <div className="inputBar">
         <InputBar
@@ -59,32 +68,30 @@ const Conversation = () => {
           background-color: #ededed;
           width: 80%;
           position: relative;
+          height: 100%;
         }
         .topBar {
           background-color: #cccfbc;
           display: flex;
           flex-direction: row;
           padding: 1%;
-          max-height: 10vh;
+          align-items: center;
         }
         img {
           width: 5%;
           border-radius: 50%;
+          margin: 0% 3%;
         }
-        span {
-          margin: 2%;
-        }
+
         .inputBar {
-          position: absolute;
           bottom: 0;
+          position: absolute;
           width: 100%;
         }
 
         .messageBar {
-          padding: 1%;
-          diplay: flex;
+          display: flex;
           flex-direction: column;
-          word-wrap: break-word;
         }
 
         @media only screen and (max-width: 700px) {
