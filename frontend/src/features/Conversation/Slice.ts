@@ -12,14 +12,14 @@ export const ConversationSlice = createSlice({
       },
       prepare: (text: string) => {
         const id = nanoid()
-        const time = new Date().toLocaleTimeString()
-        const type = "received"
+        const time = new Date().toLocaleString()
+        const sent = true
         return {
           payload: {
             id,
             text,
             time,
-            type,
+            sent,
           },
         }
       },

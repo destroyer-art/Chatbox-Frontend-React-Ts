@@ -1,6 +1,8 @@
+html,
 body,
-html {
-  margin: 0%;
+div#__next {
+  margin: 0;
+  height: 100%;
   background-color: #d0d0d0;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;

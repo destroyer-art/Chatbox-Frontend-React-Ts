@@ -31,12 +31,6 @@ const Contacts = () => {
           background-color: white;
         }
         @media only screen and (max-width: 700px) {
-          .container {
-            height: 100vh;
-            margin: auto;
-            background-color: white;
-            margin: auto;
-          }
           .contact {
             display: none;
           }

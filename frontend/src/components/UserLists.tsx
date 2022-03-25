@@ -1,17 +1,17 @@
-import { defaultImageUrl } from "@api/get-contact"
+import { defaultImageUrl } from "@api/get-contact";
 
 interface IUserLists {
-  icon: string
-  nickName: string
-  quote: string
+  icon: string;
+  nickName: string;
+  quote: string;
 }
 
 const UserLists = ({ icon, nickName, quote }: IUserLists) => {
-  const imageUrl = icon ? icon : defaultImageUrl
+  const imageUrl = icon ? icon : defaultImageUrl;
   return (
     <div>
       <div className="contact">
-        <img src={imageUrl} />
+        <img src={imageUrl} alt="profilePic" />
         <div className="contact-details">
           <div className="name">{nickName}</div>
           <div className="desc">{quote}</div>
@@ -55,6 +55,6 @@ const UserLists = ({ icon, nickName, quote }: IUserLists) => {
         }
       `}</style>
     </div>
-  )
-}
-export default UserLists
+  );
+};
+export default UserLists;
