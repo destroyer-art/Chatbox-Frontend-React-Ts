@@ -1,20 +1,16 @@
 import { defaultImageUrl } from "@api/get-contact";
-import { getHistory } from "@api/get-message";
 import { socket } from "@api/socket";
 import { useAppDispatch, useAppSelector } from "@app/hook";
 import DisplayText from "@components/DisplayText";
 import InputBar from "@components/InputBar";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch } from "@reduxjs/toolkit";
-import { get } from "http";
-import type { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { add, selectConversation } from "./Slice";
-import { IConversationState } from "./State";
+import { IStaticProps } from "./State";
 
-const Conversation = () => {
+const Conversation = ({ conversationHistory }: IStaticProps) => {
   const msgText = useAppSelector(selectConversation);
-  const [history, setHistory] = useState(msgText);
   const dispatch: Dispatch<any> = useAppDispatch();
   const [inputMsg, setInputMsg] = useState("");
   const handleMessage = async () => {
@@ -22,15 +18,13 @@ const Conversation = () => {
     setInputMsg("");
   };
 
-  const initalProp = async () => await getHistory();
   useEffect(() => {
-    initalProp().then((res) => setHistory((prev) => [...res, ...msgText]));
     const handler = (message: string) => dispatch(add(message));
     socket.on("msgToClient", handler);
     return () => {
       socket.off("msgToClient", handler);
     };
-  }, [history]);
+  }, [msgText]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.value) return;
@@ -43,8 +37,8 @@ const Conversation = () => {
         <span>User A</span>
       </div>
       <div className="messageBar">
-        {history.length > 0
-          ? history.map((message, index) => (
+        {[...conversationHistory, ...msgText].length > 0
+          ? [...conversationHistory, ...msgText].map((message, index) => (
               <div key={"displayText" + index}>
                 <DisplayText message={message} />
               </div>

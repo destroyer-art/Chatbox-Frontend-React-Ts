@@ -38,17 +38,4 @@ export const { add, remove } = ConversationSlice.actions
 
 export const selectConversation = (state: RootState) => state.conversation
 
-// export const selectActionReducer =
-//   (buttonName: string, conversationItemId: ConversationState["id"]) =>
-//   (dispatch: Dispatch<any>) => {
-//     switch (buttonName) {
-//       case conversationItemAction.delete:
-//         return dispatch(removeconversation(conversationItemId))
-//       case conversationItemAction.completed:
-//         return dispatch(completedconversation(conversationItemId))
-//       default:
-//         return alert("Invalid Action")
-//     }
-//   }
-
 export default ConversationSlice.reducer

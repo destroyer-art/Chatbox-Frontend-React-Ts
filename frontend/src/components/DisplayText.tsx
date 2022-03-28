@@ -32,7 +32,8 @@ const DisplayText = ({ message }: IProps) => {
 
         @media only screen and (max-width: 700px) {
           .main {
-            min-width: 40%;
+            min-width: 50%;
+            font-size: 1.4rem;
           }
         }
       `}</style>

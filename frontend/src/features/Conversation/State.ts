@@ -4,3 +4,7 @@ export interface IConversationState {
   time: string
   sent: boolean
 }
+
+export interface IStaticProps {
+  conversationHistory: IConversationState[];
+}

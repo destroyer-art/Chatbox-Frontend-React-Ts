@@ -1,14 +1,17 @@
 import Conversation from "@features/Conversation/index";
-import Contacts from "@features/Contacts";
 import Header from "@features/Header";
+import { getHistory } from "@api/get-message";
+import { IStaticProps } from "@features/Conversation/State";
+import dynamic from "next/dynamic";
 
-const Index = () => {
+const Index = ({ conversationHistory }: IStaticProps) => {
+  const DynamicImportContact = dynamic(() => import("@features/Contact/Index"));
   return (
     <div className="container">
       <Header />
       <div className="chatbox">
-        <Contacts />
-        <Conversation />
+        <DynamicImportContact />
+        <Conversation conversationHistory={conversationHistory} />
       </div>
       <style jsx>{`
         .container {
@@ -36,4 +39,14 @@ const Index = () => {
   );
 };
 
+export async function getStaticProps() {
+  const initalProp = async () => await getHistory();
+  return initalProp().then((res) => {
+    return {
+      props: {
+        conversationHistory: res,
+      },
+    };
+  });
+}
 export default Index;

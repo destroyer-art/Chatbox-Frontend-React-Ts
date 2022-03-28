@@ -1,11 +1,17 @@
 import { users } from "@api/get-contact";
 import InputBar from "@components/InputBar";
-import UserLists from "@components/UserLists";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
+import { ChangeEvent, useState } from "react";
 
 const Contacts = () => {
+  const [input, setInput] = useState("");
   // todo search function
-  const handleInput = () => console.log("search");
+  const handleInput = () => {
+    setInput("");
+  };
+  const DynamicImportUserList = dynamic(() => import("@components/UserLists"));
+
   return (
     <div className="contact">
       <InputBar
@@ -13,15 +19,18 @@ const Contacts = () => {
         type={"search"}
         icon={faSearch}
         bgColor="#F5F5F5"
-        handleInput={() => handleInput}
-        handleChange={() => handleInput}
+        handleInput={handleInput}
+        handleChange={(event: ChangeEvent<HTMLInputElement>) =>
+          setInput(event.target.value)
+        }
+        inputVal={input}
       />
       {users.map((user, index) => (
-        <UserLists
+        <DynamicImportUserList
           icon={user.icon}
           nickName={user.nickName}
           quote={user.quote}
-          key={"userLists-" + index}
+          key={`"dynamicImportUserList"${index}`}
         />
       ))}
       <style jsx>{`

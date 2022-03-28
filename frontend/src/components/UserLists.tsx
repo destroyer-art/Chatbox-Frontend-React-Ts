@@ -27,7 +27,7 @@ const UserLists = ({ icon, nickName, quote }: IUserLists) => {
         }
         img {
           border-radius: 50%;
-          max-width: 30%;
+          max-width: 20%;
         }
         .contact-details {
           margin: 8% 1%;
