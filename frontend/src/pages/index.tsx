@@ -1,6 +1,6 @@
 import Chatbox from "@features/Chatbox/Index";
 import { getHistory } from "@api/get-message";
-import { IStaticProps } from "@features/Conversation/State";
+import { IStaticProps } from "@features/Conversation/Type";
 
 const Index = ({ conversationHistory }: IStaticProps) => {
   return (
