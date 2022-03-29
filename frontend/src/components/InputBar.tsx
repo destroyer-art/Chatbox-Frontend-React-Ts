@@ -51,7 +51,7 @@ const InputBar = ({
           width: 100%;
         }
         input:hover {
-          border: 3px solid green;
+          border: 3px solid var(--grey-bg);
         }
       `}</style>
     </div>

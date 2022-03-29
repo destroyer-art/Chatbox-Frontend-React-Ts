@@ -1,3 +1,5 @@
+import { IUserLists } from "@components/UserLists";
+
 export interface IConversationState {
   id: string
   text: string
@@ -7,4 +9,5 @@ export interface IConversationState {
 
 export interface IStaticProps {
   conversationHistory: IConversationState[];
+  currentUser: IUserLists;
 }

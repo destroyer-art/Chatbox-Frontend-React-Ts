@@ -1,17 +1,19 @@
 export const users = [
   {
-    icon: "",
+    userId: "123123123",
+    icon: "/small-totoro.png",
     nickName: "Anna Brusssssss",
     quote: "Love beach",
   },
   {
-    icon: "",
+    userId: "567567567",
+    icon: "/totoro.png",
     nickName: "Bathman",
     quote: "Love lifesssssssssssssssssssssssss",
   },
 ]
 
-const nameLimit = 20
+const nameLimit = 10
 const quoteLimit = 10
 
 users.map((user) => {
@@ -22,6 +24,3 @@ users.map((user) => {
     ? (user.quote = user.quote.slice(0, quoteLimit).concat("..."))
     : undefined
 })
-
-export const defaultImageUrl =
-  "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"

@@ -13,7 +13,7 @@ export const ConversationSlice = createSlice({
       prepare: (text: string) => {
         const id = nanoid()
         const time = new Date().toLocaleString()
-        const sent = true
+        const sent = Boolean(Math.floor(Math.random() * 2))
         return {
           payload: {
             id,
