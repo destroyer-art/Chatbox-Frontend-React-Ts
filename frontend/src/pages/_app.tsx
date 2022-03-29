@@ -13,7 +13,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content="how to create a chatbox using nextjs react connected to nestjs Nodejs"
         />
-        <title>"chatbox chi demo heroku"</title>
+        <title>chatbox chi demo heroku</title>
       </Head>
       <Component {...pageProps} />
     </Provider>

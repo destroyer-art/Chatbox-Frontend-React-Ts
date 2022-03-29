@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
 import conversationReducer from "@features/Conversation/Slice"
+import userListReducer from "@features/Chatbox/Slice"
 
 const store = configureStore({
   reducer: {
     // Define a top-level state field named `todos`, handled by `todosReducer`
     conversation: conversationReducer,
+    userList: userListReducer,
   },
 })
 

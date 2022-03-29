@@ -1,17 +1,24 @@
-import { defaultImageUrl } from "@api/get-contact";
-
-interface IUserLists {
+import Image from "next/image";
+export interface IUserLists {
   icon: string;
   nickName: string;
   quote: string;
 }
+interface IUserListsProps extends IUserLists {
+  handleClick: () => void;
+}
 
-const UserLists = ({ icon, nickName, quote }: IUserLists) => {
-  const imageUrl = icon ? icon : defaultImageUrl;
+const UserLists = ({ icon, nickName, quote, handleClick }: IUserListsProps) => {
   return (
     <div>
-      <div className="contact">
-        <img src={imageUrl} alt="profilePic" />
+      <div className="contact" onClick={handleClick}>
+        <Image
+          src={icon || "/photo.png"}
+          className="rounded-circle"
+          width={80}
+          height={10}
+          priority
+        />
         <div className="contact-details">
           <div className="name">{nickName}</div>
           <div className="desc">{quote}</div>
@@ -24,10 +31,7 @@ const UserLists = ({ icon, nickName, quote }: IUserLists) => {
           flex-direction: row;
           margin: 8% 3%;
           margin-bottom: 1px solid red;
-        }
-        img {
-          border-radius: 50%;
-          max-width: 20%;
+          cursor: pointer;
         }
         .contact-details {
           margin: 8% 1%;

@@ -1,4 +1,4 @@
-import { defaultImageUrl } from "@api/get-contact";
+import Image from "next/image";
 import { socket } from "@api/socket";
 import { useAppDispatch, useAppSelector } from "@app/hook";
 import DisplayText from "@components/DisplayText";
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { add, selectConversation } from "./Slice";
 import { IStaticProps } from "./State";
 
-const Conversation = ({ conversationHistory }: IStaticProps) => {
+const Conversation = ({ conversationHistory, currentUser }: IStaticProps) => {
   const msgText = useAppSelector(selectConversation);
   const dispatch: Dispatch<any> = useAppDispatch();
   const [inputMsg, setInputMsg] = useState("");
@@ -31,10 +31,15 @@ const Conversation = ({ conversationHistory }: IStaticProps) => {
     setInputMsg(event.target.value);
   };
   return (
-    <div className="conversation">
+    <div>
       <div className="topBar">
-        <img src={defaultImageUrl} alt="User pictures" />
-        <span>User A</span>
+        <Image
+          src={currentUser.icon || "/photo.png"}
+          className="rounded-circle"
+          width={30}
+          height={30}
+        />
+        <span>{currentUser.nickName}</span>
       </div>
       <div className="messageBar">
         {[...conversationHistory, ...msgText].length > 0
@@ -49,7 +54,7 @@ const Conversation = ({ conversationHistory }: IStaticProps) => {
         <InputBar
           placeholder={"Type new message ..."}
           type={"text"}
-          bgColor={"#cccfbc"}
+          bgColor={"var(--elegant-green-bg)"}
           icon={faPaperPlane}
           handleInput={handleMessage}
           handleChange={handleChange}
@@ -58,25 +63,16 @@ const Conversation = ({ conversationHistory }: IStaticProps) => {
       </div>
 
       <style jsx>{`
-        .conversation {
-          background-color: #ededed;
-          width: 80%;
-          position: relative;
-          height: 100%;
+        span {
+          margin: 0 2%;
         }
         .topBar {
-          background-color: #cccfbc;
+          background-color: var(--elegant-green-bg);
           display: flex;
           flex-direction: row;
           padding: 1%;
           align-items: center;
         }
-        img {
-          width: 5%;
-          border-radius: 50%;
-          margin: 0% 3%;
-        }
-
         .inputBar {
           bottom: 0;
           position: absolute;
@@ -86,12 +82,7 @@ const Conversation = ({ conversationHistory }: IStaticProps) => {
         .messageBar {
           display: flex;
           flex-direction: column;
-        }
-
-        @media only screen and (max-width: 700px) {
-          .conversation {
-            width: 100%;
-          }
+          margin: 2% 0;
         }
       `}</style>
     </div>

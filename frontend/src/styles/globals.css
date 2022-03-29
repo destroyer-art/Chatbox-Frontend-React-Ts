@@ -6,9 +6,19 @@ div#__next {
   background-color: #d0d0d0;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+  --white-bg: #f5f5f5;
+  --dark-grey-bg: #676767;
+  --grey-bg: #b5b5b5;
+  --light-grey-bg: #f5f5f5;
+  --light-green-bg: #e2e5de;
+  --elegant-green-bg: #cccfbc;
 }
 
 svg:hover {
   cursor: pointer;
-  font-size: 2rem;
+  color: red;
+}
+
+.rounded-circle {
+  border-radius: 50%;
 }
