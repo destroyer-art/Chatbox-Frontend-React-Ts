@@ -18,6 +18,7 @@ const UserLists = ({ icon, nickName, quote, handleClick }: IUserListsProps) => {
           width={80}
           height={10}
           priority
+          alt={"user profile picture"}
         />
         <div className="contact-details">
           <div className="name">{nickName}</div>

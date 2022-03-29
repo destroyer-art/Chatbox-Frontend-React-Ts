@@ -4,10 +4,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { ChangeEvent, useState } from "react";
 import { selectUserList } from "./Slice";
 import { useAppSelector } from "@app/hook";
-import { IUserListState } from "./State";
+import { IUserListState } from "./Type";
 import Conversation from "@features/Conversation";
 import { getHistory } from "@api/get-message";
-import { IStaticProps } from "@features/Conversation/State";
+import { IStaticProps } from "@features/Conversation/Type";
 import Header from "@features/Header";
 import LandingPage from "@features/LandingPage";
 

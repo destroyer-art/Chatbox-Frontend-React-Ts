@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, nanoid, Dispatch } from "@reduxjs/toolkit"
 import { RootState } from "@app/store"
-import { IConversationState } from "./State"
+import { IConversationState } from "./Type"
 
 export const ConversationSlice = createSlice({
   name: "conversation",

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "@app/store"
 import { users } from "@api/get-contact";
-import { IUserListState } from "./State";
+import { IUserListState } from "./Type";
 
 export const UserListSlice = createSlice({
   name: "userList",

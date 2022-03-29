@@ -9,5 +9,8 @@ export interface IConversationState {
 
 export interface IStaticProps {
   conversationHistory: IConversationState[];
+}
+
+export interface IConversationProps extends IStaticProps {
   currentUser: IUserLists;
 }
