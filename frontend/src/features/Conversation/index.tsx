@@ -7,9 +7,12 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 import { add, selectConversation } from "./Slice";
-import { IStaticProps } from "./State";
+import { IConversationProps } from "./Type";
 
-const Conversation = ({ conversationHistory, currentUser }: IStaticProps) => {
+const Conversation = ({
+  conversationHistory,
+  currentUser,
+}: IConversationProps) => {
   const msgText = useAppSelector(selectConversation);
   const dispatch: Dispatch<any> = useAppDispatch();
   const [inputMsg, setInputMsg] = useState("");
@@ -38,6 +41,7 @@ const Conversation = ({ conversationHistory, currentUser }: IStaticProps) => {
           className="rounded-circle"
           width={30}
           height={30}
+          alt={"user profile picture"}
         />
         <span>{currentUser.nickName}</span>
       </div>
