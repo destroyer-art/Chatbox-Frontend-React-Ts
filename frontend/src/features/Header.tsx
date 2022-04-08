@@ -30,7 +30,7 @@ const Header = ({ handleShowContact }: IProps) => {
           padding: 1%;
           display: flex;
           justify-content: flex-end;
-          font-size: 20px;
+          font-size: 1.5rem;
           color: white;
         }
 

@@ -1,5 +1,5 @@
 interface IProps {
-  text: string
+  text: string;
 }
 
 const Heading = ({ text }: IProps) => {
@@ -8,11 +8,11 @@ const Heading = ({ text }: IProps) => {
       {text}
       <style jsx>{`
         div {
-          font-size: 30px;
+          font-size: 2rem;
           padding: 0 5%;
         }
       `}</style>
     </div>
-  )
-}
-export default Heading
+  );
+};
+export default Heading;

@@ -12,6 +12,7 @@ div#__next {
   --light-grey-bg: #f5f5f5;
   --light-green-bg: #e2e5de;
   --elegant-green-bg: #cccfbc;
+  overflow: hidden;
 }
 
 svg:hover {
