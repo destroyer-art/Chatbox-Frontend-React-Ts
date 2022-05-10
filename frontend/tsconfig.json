@@ -25,7 +25,8 @@
       "@features/*": ["src/features/*"],
       "@styles/*": ["src/styles/*"],
       "@api/*": ["src/api/*"],
-      "@app/*": ["src/app/*"]
+      "@app/*": ["src/app/*"],
+      "@helper/*": ["src/helper/*"]
     }
   },
   "include": ["src/**/*"],

@@ -6,13 +6,13 @@ import { selectUserList } from "./Slice";
 import { useAppSelector } from "@app/hook";
 import { IUserListState } from "./Type";
 import Conversation from "@features/Conversation";
-import { getHistory } from "@api/get-message";
 import { IStaticProps } from "@features/Conversation/Type";
 import Header from "@features/Header";
 import LandingPage from "@features/LandingPage";
 
 const Chatbox = ({ conversationHistory }: IStaticProps) => {
   const users = useAppSelector(selectUserList);
+
   const [input, setInput] = useState("");
   const [currentUser, setCurrentUser] = useState({} as IUserListState);
 
@@ -92,16 +92,5 @@ const Chatbox = ({ conversationHistory }: IStaticProps) => {
     </div>
   );
 };
-
-export async function getStaticProps() {
-  const initalProp = async () => await getHistory();
-  return initalProp().then((res) => {
-    return {
-      props: {
-        conversationHistory: res,
-      },
-    };
-  });
-}
 
 export default Chatbox;
