@@ -17,6 +17,7 @@ const Conversation = ({
   const dispatch: Dispatch<any> = useAppDispatch();
   const [inputMsg, setInputMsg] = useState("");
   const handleMessage = async () => {
+    if (!inputMsg) return;
     socket.emit("msgToServer", inputMsg);
     setInputMsg("");
   };
@@ -28,9 +29,7 @@ const Conversation = ({
       socket.off("msgToClient", handler);
     };
   }, [msgText]);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.value) return;
     setInputMsg(event.target.value);
   };
   return (

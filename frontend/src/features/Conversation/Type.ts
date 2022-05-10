@@ -7,6 +7,11 @@ export interface IConversationState {
   sent: boolean
 }
 
+export interface IResponseState {
+  message: string
+  statusCode: number
+}
+
 export interface IStaticProps {
   conversationHistory: IConversationState[];
 }

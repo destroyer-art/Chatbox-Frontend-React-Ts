@@ -10,6 +10,7 @@ const Heading = ({ text }: IProps) => {
         div {
           font-size: 2rem;
           padding: 0 5%;
+          margin: 1% 0;
         }
       `}</style>
     </div>
