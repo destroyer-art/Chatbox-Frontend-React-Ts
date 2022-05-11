@@ -1,21 +1,22 @@
 import Image from "next/image";
-import { socket } from "@api/socket";
+import { runSocket } from "@api/socket";
 import { useAppDispatch, useAppSelector } from "@app/hook";
 import DisplayText from "@components/DisplayText";
 import InputBar from "@components/InputBar";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
-import { add, selectConversation } from "./Slice";
-import { IConversationProps } from "./Type";
+import { add, fetchHistory, selectConversation } from "./Slice";
 
-const Conversation = ({
-  conversationHistory,
-  currentUser,
-}: IConversationProps) => {
-  const msgText = useAppSelector(selectConversation);
+interface IProp {
+  username: string;
+  token: string;
+}
+const Conversation = ({ username, token }: IProp) => {
+  const conversations = useAppSelector(selectConversation);
   const dispatch: Dispatch<any> = useAppDispatch();
   const [inputMsg, setInputMsg] = useState("");
+  const socket = runSocket(token);
   const handleMessage = async () => {
     if (!inputMsg) return;
     socket.emit("msgToServer", inputMsg);
@@ -23,30 +24,34 @@ const Conversation = ({
   };
 
   useEffect(() => {
+    dispatch(fetchHistory(token));
+  }, []);
+  useEffect(() => {
     const handler = (message: string) => dispatch(add(message));
     socket.on("msgToClient", handler);
     return () => {
       socket.off("msgToClient", handler);
     };
-  }, [msgText]);
+  }, [conversations]);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputMsg(event.target.value);
   };
+
   return (
     <div>
       <div className="topBar">
         <Image
-          src={currentUser.icon || "/photo.png"}
+          src={"/photo.png"}
           className="rounded-circle"
           width={30}
           height={30}
           alt={"user profile picture"}
         />
-        <span>{currentUser.nickName}</span>
+        <span>{username}</span>
       </div>
       <div className="messageBar">
-        {[...conversationHistory, ...msgText].length > 0
-          ? [...conversationHistory, ...msgText].map((message, index) => (
+        {conversations.length > 0
+          ? conversations.map((message, index) => (
               <div key={"displayText" + index}>
                 <DisplayText message={message} />
               </div>

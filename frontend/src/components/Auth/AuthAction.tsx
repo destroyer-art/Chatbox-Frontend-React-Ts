@@ -6,19 +6,16 @@ interface IProps {
 const AuthAction = ({ text, handleClick }: IProps) => {
   const displayText = text.split("?");
   return (
-    <p>
+    <span>
       {displayText[0] + "?"} <a onClick={handleClick}>{displayText[1]}</a>
       <style jsx>{`
-        p {
-          margin: 3.2% 0;
-        }
         a {
           text-decoration: underline;
           color: blue;
           cursor: pointer;
         }
       `}</style>
-    </p>
+    </span>
   );
 };
 

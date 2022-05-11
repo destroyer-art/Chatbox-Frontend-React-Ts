@@ -7,7 +7,13 @@ const Auth = () => {
       <style jsx>{`
         .auth-div {
           width: 100%;
-          margin: 10% 0;
+          margin: 20% 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+          .auth-div {
+            margin: 50% 0;
+          }
         }
       `}</style>
     </div>

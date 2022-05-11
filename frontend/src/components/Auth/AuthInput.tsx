@@ -1,10 +1,12 @@
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { capitalizeString } from "@helper/common";
 import { useState } from "react";
+import { AuthActionEnum, AuthDataEnum } from "./AuthConstant";
 
 interface IProps {
   type: string;
-  formType?: string;
+  formType: string;
   icon: IconDefinition;
   handlePassword?: () => void;
 }
@@ -35,17 +37,16 @@ const AuthInput = ({ type, formType, icon, handlePassword }: IProps) => {
           />
         </div>
       ) : (
-        <input value={formType} type={type} />
+        <input value={capitalizeString(formType)} type={type} />
       )}
-      {type === "password" && formType === "Login" ? (
-        <a onClick={handlePassword}>Forgot password</a>
+      {type === AuthDataEnum.password && formType === AuthActionEnum.login ? (
+        <span onClick={handlePassword}>Forgot password</span>
       ) : null}
       <style jsx>{`
         .auth-input {
           margin: 0.4rem 0;
           display: flex;
           flex-direction: column;
-          position: relative;
         }
 
         .auth-input-box {
@@ -65,11 +66,11 @@ const AuthInput = ({ type, formType, icon, handlePassword }: IProps) => {
           background-color: #04aa6d;
           color: white;
           cursor: pointer;
-          margin: 5% 0;
+          margin: 5% 0 0 0;
         }
 
-        a {
-          margin-top: -2%;
+        span {
+          margin-top: -1%;
           text-align: right;
           color: red;
           text-decoration: underline;
