@@ -41,6 +41,7 @@ const InputBar = ({
       <style jsx>{`
         .main {
           position: relative;
+          width: 100%;
         }
         input {
           font-size: 1.2rem;

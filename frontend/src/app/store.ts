@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
 import conversationReducer from "@features/Conversation/Slice"
-import userListReducer from "@features/Chatbox/Slice"
 import userReducer from "@features/Auth/Slice"
 const store = configureStore({
   reducer: {
     conversation: conversationReducer,
-    userList: userListReducer,
     user: userReducer
   },
 })

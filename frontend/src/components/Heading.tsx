@@ -10,7 +10,7 @@ const Heading = ({ text }: IProps) => {
       {capitalizeString(text)}
       <style jsx>{`
         div {
-          font-size: 2rem;
+          font-size: 2.2rem;
           text-align: center;
         }
       `}</style>
