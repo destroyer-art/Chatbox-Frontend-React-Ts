@@ -9,9 +9,11 @@ export const fetchHistory = createAsyncThunk(
   async (token: string) => await getConversationHistory(token)
 )
 
+const initialState = [] as IConversationState[]
+
 export const ConversationSlice = createSlice({
   name: "conversation",
-  initialState: [] as IConversationState[],
+  initialState,
   reducers: {
     add: {
       reducer: (state, action: PayloadAction<IConversationState>) => {
@@ -37,6 +39,9 @@ export const ConversationSlice = createSlice({
         1
       )
     },
+    reset: () => {
+      return initialState;
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchHistory.fulfilled, (state, action) => {
@@ -46,7 +51,7 @@ export const ConversationSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { add, remove } = ConversationSlice.actions
+export const { add, remove, reset } = ConversationSlice.actions
 
 export const selectConversation = (state: RootState) => state.conversation
 

@@ -21,9 +21,8 @@ export const userSlice = createSlice({
         ...action.payload
       }
     },
-    unset: (state, action: PayloadAction<IUser>) => {
+    unset: () => {
       return {
-        ...state,
         ...initialState
       }
     },
