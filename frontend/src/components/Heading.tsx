@@ -1,3 +1,5 @@
+import { capitalizeString } from "@helper/common";
+
 interface IProps {
   text: string;
 }
@@ -5,12 +7,11 @@ interface IProps {
 const Heading = ({ text }: IProps) => {
   return (
     <div>
-      {text}
+      {capitalizeString(text)}
       <style jsx>{`
         div {
           font-size: 2rem;
-          padding: 0 5%;
-          margin: 1% 0;
+          text-align: center;
         }
       `}</style>
     </div>

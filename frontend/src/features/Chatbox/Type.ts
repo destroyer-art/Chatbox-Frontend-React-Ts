@@ -1,5 +1,5 @@
-import { IUserLists } from "@components/UserLists";
+import { IUserData } from "@components/UserLists";
 
-export interface IUserListState extends IUserLists {
+export interface IUserListState extends IUserData {
   userId: string
 }

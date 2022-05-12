@@ -1,6 +1,13 @@
-import { createSlice, PayloadAction, nanoid, Dispatch } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction, nanoid, createAsyncThunk } from "@reduxjs/toolkit"
 import { RootState } from "@app/store"
 import { IConversationState } from "./Type"
+import { getConversationHistory } from "@api/get-message"
+
+
+export const fetchHistory = createAsyncThunk(
+  'conversation/fetchHistory',
+  async (token: string) => await getConversationHistory(token)
+)
 
 export const ConversationSlice = createSlice({
   name: "conversation",
@@ -31,6 +38,11 @@ export const ConversationSlice = createSlice({
       )
     },
   },
+  extraReducers(builder) {
+    builder.addCase(fetchHistory.fulfilled, (state, action) => {
+      return action.payload;
+    })
+  }
 })
 
 // Action creators are generated for each case reducer function

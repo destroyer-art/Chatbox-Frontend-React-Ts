@@ -1,10 +1,10 @@
 import Image from "next/image";
-export interface IUserLists {
+export interface IUserData {
   icon: string;
   nickName: string;
   quote: string;
 }
-interface IUserListsProps extends IUserLists {
+interface IUserListsProps extends IUserData {
   handleClick: () => void;
 }
 

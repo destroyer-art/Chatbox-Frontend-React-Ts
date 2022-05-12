@@ -1,24 +1,21 @@
-import { getConversationHistory } from "@api/get-message";
+import { useAppSelector } from "@app/hook";
+import { AuthTokenEnum } from "@components/Auth/AuthConstant";
 import Auth from "@features/Auth";
-import Chatbox from "@features/Chatbox/Index";
-import { IStaticProps } from "@features/Conversation/Type";
-import { useEffect, useState } from "react";
-import { getCookie } from "src/helper/cookies";
+import { selectUser } from "@features/Auth/Slice";
+import Conversation from "@features/Conversation";
 
-const Index = ({ conversationHistory }: IStaticProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    // check if user cookie is valid, will show conversation
-    getCookie("username") ? setIsLoggedIn(true) : null;
-  });
+const Index = () => {
+  const currentUser = useAppSelector(selectUser);
   return (
     <div className="container">
-      {isLoggedIn ? (
-        <Chatbox conversationHistory={conversationHistory} />
+      {currentUser.username ? (
+        <Conversation
+          username={currentUser.username}
+          token={`${AuthTokenEnum.bearerToken} ${currentUser.token} `}
+        />
       ) : (
         <Auth />
       )}
-
       <style jsx>{`
         .container {
           margin: 3rem;
@@ -36,14 +33,5 @@ const Index = ({ conversationHistory }: IStaticProps) => {
     </div>
   );
 };
-
-export async function getStaticProps() {
-  const conversation = await getConversationHistory();
-  return {
-    props: {
-      conversationHistory: conversation,
-    },
-  };
-}
 
 export default Index;

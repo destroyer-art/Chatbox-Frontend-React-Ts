@@ -1,4 +1,4 @@
-import { IUserLists } from "@components/UserLists";
+import { IUserData } from "@components/UserLists";
 
 export interface IConversationState {
   id: string
@@ -17,5 +17,5 @@ export interface IStaticProps {
 }
 
 export interface IConversationProps extends IStaticProps {
-  currentUser: IUserLists;
+  currentUser: IUserData;
 }

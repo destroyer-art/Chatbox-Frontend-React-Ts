@@ -1,33 +1,44 @@
 import { postAuth } from "@api/auth";
+import { useAppDispatch } from "@app/hook";
 import Heading from "@components/Heading";
 import { fa0, faKey, faUser } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { Dispatch, useState } from "react";
 import AuthAction from "./AuthAction";
-import { AuthActionEnum } from "./AuthConstant";
+import {
+  AuthActionDescription,
+  AuthActionEnum,
+  AuthDataEnum,
+} from "./AuthConstant";
 import AuthInput from "./AuthInput";
+import { set } from "@features/Auth/Slice";
 
 const AuthForm = () => {
   const initialAuthObj = {
     title: AuthActionEnum.login,
-    description: "Not registered? Create an account",
+    description: AuthActionDescription[AuthActionEnum.login],
   };
-
+  const dispatch: Dispatch<any> = useAppDispatch();
   const [authObj, setAuthObj] = useState(initialAuthObj);
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     const data = {
       email: event.target.email.value,
       password: event.target.password ? event.target.password.value : "",
       type: authObj.title,
     };
-    postAuth(data);
+    const response = await postAuth(data);
+    if (response.accessToken) {
+      dispatch(set({ username: response.email, token: response.accessToken }));
+    } else {
+      alert(response.message);
+    }
   };
 
   const handleClick = () => {
-    if (authObj.title === "Login") {
+    if (authObj.title === AuthActionEnum.login) {
       setAuthObj({
         title: AuthActionEnum.signup,
-        description: "Already has account? Lets log in",
+        description: AuthActionDescription[AuthActionEnum.signup],
       });
     } else {
       setAuthObj(initialAuthObj);
@@ -36,7 +47,7 @@ const AuthForm = () => {
   const forgotPassword = () => {
     setAuthObj({
       title: AuthActionEnum.resetPassword,
-      description: "Already has account? Lets log in",
+      description: AuthActionDescription[AuthActionEnum.resetPassword],
     });
   };
 
@@ -44,11 +55,15 @@ const AuthForm = () => {
     <form className="auth-form" onSubmit={handleSubmit}>
       <Heading text={`${authObj.title} Form`} />
 
-      <AuthInput type={"email"} icon={faUser} />
+      <AuthInput
+        type={AuthDataEnum.email}
+        icon={faUser}
+        formType={authObj.title}
+      />
 
       {authObj.title !== AuthActionEnum.resetPassword && (
         <AuthInput
-          type={"password"}
+          type={AuthDataEnum.password}
           formType={authObj.title}
           icon={faKey}
           handlePassword={forgotPassword}
@@ -62,8 +77,6 @@ const AuthForm = () => {
           width: 50%;
           display: flex;
           flex-direction: column;
-          flex-wrap: wrap;
-          align-content: center;
           margin: 0 auto;
         }
 
