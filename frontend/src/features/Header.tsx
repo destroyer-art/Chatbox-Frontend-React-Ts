@@ -1,27 +1,27 @@
-import Heading from "@components/Heading";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Heading from '@components/Heading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowCircleLeft,
   faSliders,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 interface IProps {
   handleShowContact: () => void;
 }
 const Header = ({ handleShowContact }: IProps) => {
-  const header = "Chat Box";
+  const header = 'Chat Box';
   return (
     <div className="header">
       <div className="show-contact">
         <FontAwesomeIcon
           icon={faArrowCircleLeft}
-          style={{ fontSize: "30px" }}
+          style={{ fontSize: '30px' }}
           onClick={handleShowContact}
         />
       </div>
 
       <Heading text={header} />
       <div className="right">
-        <FontAwesomeIcon icon={faSliders} style={{ fontSize: "30px" }} />
+        <FontAwesomeIcon icon={faSliders} style={{ fontSize: '30px' }} />
       </div>
 
       <style jsx>{`

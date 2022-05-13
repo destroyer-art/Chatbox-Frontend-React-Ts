@@ -4,10 +4,10 @@ interface IProps {
 }
 
 const AuthAction = ({ text, handleClick }: IProps) => {
-  const displayText = text.split("?");
+  const displayText = text.split('?');
   return (
     <span>
-      {displayText[0] + "?"} <a onClick={handleClick}>{displayText[1]}</a>
+      {displayText[0] + '?'} <a onClick={handleClick}>{displayText[1]}</a>
       <style jsx>{`
         a {
           text-decoration: underline;

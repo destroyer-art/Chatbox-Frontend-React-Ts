@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { capitalizeString } from "@helper/common";
+import { useState } from 'react';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { capitalizeString } from '@helper/common';
 
 interface IProps {
   type: string;
@@ -10,11 +10,11 @@ interface IProps {
   handlePassword?: () => void;
 }
 
-const AuthInput = ({ type, formType, icon, handlePassword }: IProps) => {
-  const [input, setInput] = useState("");
+const AuthInput = ({ type, formType, icon }: IProps) => {
+  const [input, setInput] = useState('');
   return (
     <div className="auth-input">
-      {type !== "submit" ? (
+      {type !== 'submit' ? (
         <div className="auth-input-box">
           <input
             placeholder={`Enter your ${type}`}
@@ -27,11 +27,11 @@ const AuthInput = ({ type, formType, icon, handlePassword }: IProps) => {
           <FontAwesomeIcon
             icon={icon}
             style={{
-              position: "absolute",
-              right: "-5%",
-              top: "40%",
-              width: "20%",
-              height: "20%",
+              position: 'absolute',
+              right: '-5%',
+              top: '40%',
+              width: '20%',
+              height: '20%',
             }}
           />
         </div>
@@ -61,7 +61,7 @@ const AuthInput = ({ type, formType, icon, handlePassword }: IProps) => {
           margin: 1.2rem 0;
         }
 
-        input[type="submit"] {
+        input[type='submit'] {
           background-color: #04aa6d;
           color: white;
           cursor: pointer;

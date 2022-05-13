@@ -1,16 +1,16 @@
-import { postAuth } from "@api/auth";
-import { useAppDispatch } from "@app/hook";
-import Heading from "@components/Heading";
-import { fa0, faKey, faUser } from "@fortawesome/free-solid-svg-icons";
-import { Dispatch, useState } from "react";
-import AuthAction from "./AuthAction";
+import { postAuth } from '@api/auth';
+import { useAppDispatch } from '@app/hook';
+import Heading from '@components/Heading';
+import { fa0, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { Dispatch, useState } from 'react';
+import AuthAction from './AuthAction';
 import {
   AuthActionDescription,
   AuthActionEnum,
   AuthDataEnum,
-} from "./AuthConstant";
-import AuthInput from "./AuthInput";
-import { set } from "@features/Auth/Slice";
+} from './AuthConstant';
+import AuthInput from './AuthInput';
+import { set } from '@features/Auth/Slice';
 
 const AuthForm = () => {
   const initialAuthObj = {
@@ -23,7 +23,7 @@ const AuthForm = () => {
     event.preventDefault();
     const data = {
       email: event.target.email.value,
-      password: event.target.password ? event.target.password.value : "",
+      password: event.target.password ? event.target.password.value : '',
       type: authObj.title,
     };
     const response = await postAuth(data);
@@ -70,7 +70,7 @@ const AuthForm = () => {
         />
       )}
 
-      <AuthInput type={"submit"} formType={authObj.title} icon={fa0} />
+      <AuthInput type={'submit'} formType={authObj.title} icon={fa0} />
       <AuthAction text={authObj.description} handleClick={handleClick} />
       <style jsx>{`
         .auth-form {

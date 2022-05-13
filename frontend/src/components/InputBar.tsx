@@ -1,5 +1,5 @@
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface IProps {
   placeholder: string;
@@ -7,7 +7,9 @@ interface IProps {
   icon: IconDefinition;
   bgColor?: string;
   handleInput: () => void;
+  /* eslint-disable */
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /* eslint-enable */
   inputVal: string;
 }
 
@@ -31,9 +33,9 @@ const InputBar = ({
       <FontAwesomeIcon
         icon={icon}
         style={{
-          position: "absolute",
-          right: "5%",
-          top: "30%",
+          position: 'absolute',
+          right: '5%',
+          top: '30%',
         }}
         onClick={handleInput}
       />
@@ -48,7 +50,7 @@ const InputBar = ({
           box-sizing: border-box;
           padding: 3%;
           border: hidden;
-          background-color: ${bgColor ? bgColor : "transparent"};
+          background-color: ${bgColor ? bgColor : 'transparent'};
           width: 100%;
         }
         input:hover {

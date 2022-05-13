@@ -1,5 +1,5 @@
-import DisplayText from "@components/DisplayText";
-import { IConversationState } from "@features/Conversation/Type";
+import DisplayText from '@components/DisplayText';
+import { IConversationState } from '@features/Conversation/Type';
 
 interface IProps {
   conversations: IConversationState[];
@@ -10,7 +10,7 @@ const MessageBar = ({ conversations }: IProps) => {
     <div className="messageBar">
       {conversations.length > 0
         ? conversations.map((message, index) => (
-            <div key={"displayText" + index}>
+            <div key={'displayText' + index}>
               <DisplayText message={message} />
             </div>
           ))

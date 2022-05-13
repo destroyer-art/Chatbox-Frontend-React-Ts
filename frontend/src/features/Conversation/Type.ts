@@ -1,15 +1,15 @@
-import { IUserData } from "@components/UserLists";
+import { IUserData } from '@components/UserLists';
 
 export interface IConversationState {
-  id: string
-  text: string
-  time: string
-  sent: boolean
+  id: string;
+  text: string;
+  time: string;
+  sent: boolean;
 }
 
 export interface IResponseState {
-  message: string
-  statusCode: number
+  message: string;
+  statusCode: number;
 }
 
 export interface IStaticProps {

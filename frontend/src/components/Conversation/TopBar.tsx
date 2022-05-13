@@ -1,6 +1,6 @@
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 interface IProps {
   username: string;
   handleLogout: () => void;
@@ -11,18 +11,18 @@ const TopBar = ({ username, handleLogout, icon }: IProps) => {
   return (
     <div className="topBar">
       <Image
-        src={"/photo.png"}
+        src={'/photo.png'}
         className="rounded-circle"
         width={30}
         height={30}
-        alt={"user profile picture"}
+        alt={'user profile picture'}
       />
       <span>{username}</span>
       <FontAwesomeIcon
         icon={icon}
         style={{
-          position: "absolute",
-          right: "2%",
+          position: 'absolute',
+          right: '2%',
         }}
         onClick={handleLogout}
       />
