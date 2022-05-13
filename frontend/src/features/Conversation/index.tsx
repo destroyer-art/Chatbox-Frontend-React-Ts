@@ -1,16 +1,16 @@
-import { runSocket } from "@api/socket";
-import { useAppDispatch, useAppSelector } from "@app/hook";
+import { runSocket } from '@api/socket';
+import { useAppDispatch, useAppSelector } from '@app/hook';
 import {
   faArrowRightFromBracket,
   faPaperPlane,
-} from "@fortawesome/free-solid-svg-icons";
-import { Dispatch } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
-import { add, fetchHistory, reset, selectConversation } from "./Slice";
-import TopBar from "@components/Conversation/TopBar";
-import { unset } from "@features/Auth/Slice";
-import MessageBar from "@components/Conversation/MessageBar";
-import TypingBox from "@components/Conversation/TypingBox";
+} from '@fortawesome/free-solid-svg-icons';
+import { Dispatch } from '@reduxjs/toolkit';
+import { useEffect, useState } from 'react';
+import { add, fetchHistory, reset, selectConversation } from './Slice';
+import TopBar from '@components/Conversation/TopBar';
+import { unset } from '@features/Auth/Slice';
+import MessageBar from '@components/Conversation/MessageBar';
+import TypingBox from '@components/Conversation/TypingBox';
 
 interface IProp {
   username: string;
@@ -19,12 +19,12 @@ interface IProp {
 const Conversation = ({ username, token }: IProp) => {
   const conversations = useAppSelector(selectConversation);
   const dispatch: Dispatch<any> = useAppDispatch();
-  const [inputMsg, setInputMsg] = useState("");
+  const [inputMsg, setInputMsg] = useState('');
   const socket = runSocket(token);
   const handleMessage = () => {
     if (!inputMsg) return;
-    socket.emit("msgToServer", inputMsg);
-    setInputMsg("");
+    socket.emit('msgToServer', inputMsg);
+    setInputMsg('');
   };
 
   useEffect(() => {
@@ -32,9 +32,9 @@ const Conversation = ({ username, token }: IProp) => {
   }, []);
   useEffect(() => {
     const handler = (message: string) => dispatch(add(message));
-    socket.on("msgToClient", handler);
+    socket.on('msgToClient', handler);
     return () => {
-      socket.off("msgToClient", handler);
+      socket.off('msgToClient', handler);
     };
   }, [conversations]);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

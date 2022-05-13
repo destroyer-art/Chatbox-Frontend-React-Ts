@@ -1,37 +1,36 @@
-import { RootState } from "@app/store";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { RootState } from '@app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IUser {
   username: string;
   token: string;
 }
-const initialState: IUser =
-{
-  username: "",
-  token: "",
-}
+const initialState: IUser = {
+  username: '',
+  token: '',
+};
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     set: (state, action: PayloadAction<IUser>) => {
       return {
         ...state,
-        ...action.payload
-      }
+        ...action.payload,
+      };
     },
     unset: () => {
       return {
-        ...initialState
-      }
+        ...initialState,
+      };
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { set, unset } = userSlice.actions
+export const { set, unset } = userSlice.actions;
 
-export const selectUser = (state: RootState) => state.user
+export const selectUser = (state: RootState) => state.user;
 
-export default userSlice.reducer
+export default userSlice.reducer;

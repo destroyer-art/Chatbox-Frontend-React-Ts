@@ -1,29 +1,34 @@
-import { AuthActionEnum, AuthDataEnum } from "@components/Auth/AuthConstant";
-import { backendUrl } from "./constant";
+import { AuthActionEnum, AuthDataEnum } from '@components/Auth/AuthConstant';
+import { backendUrl } from './constant';
 
 interface IUserData {
   email: string;
   password?: string;
-  type: AuthActionEnum
+  type: AuthActionEnum;
 }
 
 export async function postAuth(userData: IUserData) {
   if (!Object.values(AuthActionEnum)?.includes(userData.type)) {
     throw new Error('Invalid auth action');
   }
-  let mapper = {
+  const mapper = {
     [userData.type]: {
       validateKeyValue: [AuthDataEnum.email, AuthDataEnum.password],
-      endpoint: `${backendUrl}auth/${userData.type}`
-    }
-  }
+      endpoint: `${backendUrl}auth/${userData.type}`,
+    },
+  };
   if (userData.type === AuthActionEnum.resetPassword) {
-    mapper[AuthActionEnum.resetPassword].validateKeyValue = [AuthDataEnum.email];
+    mapper[AuthActionEnum.resetPassword].validateKeyValue = [
+      AuthDataEnum.email,
+    ];
   }
-  const validationFieldArray = mapper[userData.type].validateKeyValue
+  const validationFieldArray = mapper[userData.type].validateKeyValue;
   for (let i = 0; i < validationFieldArray.length; i++) {
-    if (!userData.hasOwnProperty(validationFieldArray[i]) || !userData[validationFieldArray[i]]) {
-      throw new Error(`${validationFieldArray[i]} field must not be empty!`)
+    if (
+      validationFieldArray[i] in userData ||
+      !userData[validationFieldArray[i]]
+    ) {
+      throw new Error(`${validationFieldArray[i]} field must not be empty!`);
     }
   }
   const options = {
@@ -32,8 +37,7 @@ export async function postAuth(userData: IUserData) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(userData),
-
-  }
+  };
 
   const res = await fetch(mapper[userData.type].endpoint, options);
   const data = await res.json();

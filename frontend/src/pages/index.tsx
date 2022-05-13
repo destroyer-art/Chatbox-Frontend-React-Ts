@@ -1,8 +1,8 @@
-import { useAppSelector } from "@app/hook";
-import { AuthTokenEnum } from "@components/Auth/AuthConstant";
-import Auth from "@features/Auth";
-import { selectUser } from "@features/Auth/Slice";
-import Conversation from "@features/Conversation";
+import { useAppSelector } from '@app/hook';
+import { AuthTokenEnum } from '@components/Auth/AuthConstant';
+import Auth from '@features/Auth';
+import { selectUser } from '@features/Auth/Slice';
+import Conversation from '@features/Conversation';
 
 const Index = () => {
   const currentUser = useAppSelector(selectUser);

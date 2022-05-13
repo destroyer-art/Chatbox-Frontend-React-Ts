@@ -1,11 +1,12 @@
-import InputBar from "@components/InputBar";
-import { IConversationState } from "@features/Conversation/Type";
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import InputBar from '@components/InputBar';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 interface IProps {
   inputMsg: string;
   handleMessage: () => void;
+  /* eslint-disable */
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /* eslint-enable */
   icon: IconDefinition;
 }
 
@@ -13,9 +14,9 @@ const TypingBox = ({ icon, inputMsg, handleMessage, handleChange }: IProps) => {
   return (
     <div className="typing-box">
       <InputBar
-        placeholder={"Type new message ..."}
-        type={"text"}
-        bgColor={"var(--elegant-green-bg)"}
+        placeholder={'Type new message ...'}
+        type={'text'}
+        bgColor={'var(--elegant-green-bg)'}
         icon={icon}
         handleInput={handleMessage}
         handleChange={handleChange}

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 export interface IUserData {
   icon: string;
   nickName: string;
@@ -13,12 +13,12 @@ const UserLists = ({ icon, nickName, quote, handleClick }: IUserListsProps) => {
     <div>
       <div className="contact" onClick={handleClick}>
         <Image
-          src={icon || "/photo.png"}
+          src={icon || '/photo.png'}
           className="rounded-circle"
           width={80}
           height={10}
           priority
-          alt={"user profile picture"}
+          alt={'user profile picture'}
         />
         <div className="contact-details">
           <div className="name">{nickName}</div>

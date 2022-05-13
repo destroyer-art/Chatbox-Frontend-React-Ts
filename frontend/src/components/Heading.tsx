@@ -1,4 +1,4 @@
-import { capitalizeString } from "@helper/common";
+import { capitalizeString } from '@helper/common';
 
 interface IProps {
   text: string;
