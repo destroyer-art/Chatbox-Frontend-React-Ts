@@ -25,7 +25,7 @@ export async function postAuth(userData: IUserData) {
   const validationFieldArray = mapper[userData.type].validateKeyValue;
   for (let i = 0; i < validationFieldArray.length; i++) {
     if (
-      validationFieldArray[i] in userData ||
+      !(validationFieldArray[i] in userData) ||
       !userData[validationFieldArray[i]]
     ) {
       throw new Error(`${validationFieldArray[i]} field must not be empty!`);

@@ -24,19 +24,18 @@ const Conversation = ({ username, token }: IProp) => {
   const handleMessage = () => {
     if (!inputMsg) return;
     socket.emit('msgToServer', inputMsg);
+    socket.on('msgToServer', (message: string) => {
+      console.log(message, 'msgToServerlai');
+      dispatch(add(message));
+    });
+
     setInputMsg('');
   };
 
   useEffect(() => {
     dispatch(fetchHistory(token));
   }, []);
-  useEffect(() => {
-    const handler = (message: string) => dispatch(add(message));
-    socket.on('msgToClient', handler);
-    return () => {
-      socket.off('msgToClient', handler);
-    };
-  }, [conversations]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputMsg(event.target.value);
   };
