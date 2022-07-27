@@ -22,7 +22,6 @@ const Index = () => {
           justify-content: center;
           height: calc(100% - 6rem);
         }
-
         @media only screen and (max-width: 700px) {
           .container {
             margin: 0%;

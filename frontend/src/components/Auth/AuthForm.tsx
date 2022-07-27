@@ -73,17 +73,25 @@ const AuthForm = () => {
       <AuthInput type={'submit'} formType={authObj.title} icon={fa0} />
       <AuthAction text={authObj.description} handleClick={handleClick} />
       <style jsx>{`
+        @use 'src/styles/_mixin.module.scss' as mixin;
         .auth-form {
           width: 50%;
           display: flex;
           flex-direction: column;
           margin: 0 auto;
+          background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+          padding: 5%;
         }
 
         a {
           text-decoration: underline;
           color: blue;
           cursor: pointer;
+        }
+        @include mixin.breakpoint(phoneOnly) {
+            .auth-form {
+              width:100%;
+          }
         }
       `}</style>
     </form>

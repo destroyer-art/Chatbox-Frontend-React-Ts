@@ -29,6 +29,6 @@
       "@helper/*": ["src/helper/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "style/style-constant.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

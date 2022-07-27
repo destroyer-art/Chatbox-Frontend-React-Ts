@@ -1,0 +1,20 @@
+@mixin breakpoint($breakpoint) {
+  $deviceType: (
+    'phoneOnly':( max-width:  599px ),
+    'tabletPortrait':( max-width:  600px ),
+    'tabletLandscape':( max-width:900px ),
+    'desktop':( max-width: 1200px ),
+    'bigDesktop':( max-width: 1800px ),
+);
+  @if map-has-key($deviceType, $breakpoint) {
+    @media #{inspect(map-get($deviceType, $breakpoint))} {
+      @content;
+    }
+  }
+ 
+  // If the key doesn't exist in the map
+  @else {
+    @warn "No `#{$breakpoint}` was found. "
+        + "Available deviceType are: #{map-keys($deviceType)}.";
+  }
+}

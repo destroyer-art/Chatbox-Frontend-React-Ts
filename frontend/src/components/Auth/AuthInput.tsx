@@ -17,7 +17,7 @@ const AuthInput = ({ type, formType, icon }: IProps) => {
       {type !== 'submit' ? (
         <div className="auth-input-box">
           <input
-            placeholder={`Enter your ${type}`}
+            placeholder={`${capitalizeString(type)}`}
             type={type}
             id={type}
             required
@@ -28,15 +28,16 @@ const AuthInput = ({ type, formType, icon }: IProps) => {
             icon={icon}
             style={{
               position: 'absolute',
-              right: '-5%',
+              right: '5%',
               top: '40%',
-              width: '20%',
-              height: '20%',
+              width: '25%',
+              height: '25%',
             }}
           />
         </div>
       ) : (
-        <input value={capitalizeString(formType)} type={type} />
+          <div><input value={capitalizeString(formType)} type={type} /></div>
+        
       )}
       {/* {type === AuthDataEnum.password && formType === AuthActionEnum.login ? (
         <span onClick={handlePassword}>Forgot password</span>
@@ -46,6 +47,7 @@ const AuthInput = ({ type, formType, icon }: IProps) => {
           margin: 0.4rem 0;
           display: flex;
           flex-direction: column;
+          width: 100%;
         }
 
         .auth-input-box {
@@ -53,19 +55,19 @@ const AuthInput = ({ type, formType, icon }: IProps) => {
         }
 
         input {
-          font-size: 1.2rem;
-          box-sizing: border-box;
-          padding: 1.2rem;
+          font-size: 1.5rem;
+          padding: 5%;
           border: hidden;
-          width: 100%;
-          margin: 1.2rem 0;
+          margin: 2% 0 0 0;
+          width:80%;
+          font-family: inherit;
         }
 
         input[type='submit'] {
-          background-color: #04aa6d;
+          background-color: #32de84;
           color: white;
           cursor: pointer;
-          margin: 2% 0 0 0;
+          width:90%;
         }
 
         span {
