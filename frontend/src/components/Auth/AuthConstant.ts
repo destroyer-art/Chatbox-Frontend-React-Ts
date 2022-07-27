@@ -20,3 +20,5 @@ export const AuthActionDescription = {
 export enum AuthTokenEnum {
   bearerToken = 'Bearer',
 }
+
+export const AuthCoverTitle = 'Chat Box App';

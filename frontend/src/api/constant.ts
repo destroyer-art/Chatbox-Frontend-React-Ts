@@ -1,2 +1,2 @@
-export const backendUrl = 'http://localhost:7070/api/';
-export const socketUrl = 'http://localhost:6869/';
+export const backendUrl = 'http://localhost:8080/api/';
+export const socketUrl = 'http://localhost:8020/';
