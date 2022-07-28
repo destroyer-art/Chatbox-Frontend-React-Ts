@@ -22,7 +22,7 @@ const AuthCover = () => {
         .auth-title {
           text-shadow: 3px 3px 0px lightblue;
           margin: 0 auto;
-          font-size: 4rem;
+          font-size: 3rem;
           font-weight: 600;
         }
       `}</style>
