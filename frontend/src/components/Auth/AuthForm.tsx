@@ -13,6 +13,7 @@ import AuthInput from './AuthInput';
 import { set } from '@features/Auth/Slice';
 
 const AuthForm = () => {
+  const [checkboxStatus, setCheckboxStatus] = useState(false);
   const initialAuthObj = {
     title: AuthActionEnum.login,
     description: AuthActionDescription[AuthActionEnum.login],
@@ -25,6 +26,7 @@ const AuthForm = () => {
       email: event.target.email.value,
       password: event.target.password ? event.target.password.value : '',
       type: authObj.title,
+      isRememberChosen:checkboxStatus
     };
     const response = await postAuth(data);
     if (response.accessToken) {
@@ -70,6 +72,9 @@ const AuthForm = () => {
         />
       )}
 
+      <label>
+        <input type={'checkbox'} defaultChecked={checkboxStatus} onChange={() => setCheckboxStatus(!checkboxStatus)} name='isRememberChosen'/>Remember Me
+      </label>
       <AuthInput type={'submit'} formType={authObj.title} icon={fa0} />
       <AuthAction text={authObj.description} handleClick={handleClick} />
       <style jsx>{`
@@ -87,6 +92,12 @@ const AuthForm = () => {
           text-decoration: underline;
           color: blue;
           cursor: pointer;
+        }
+        label {
+          text-align: left;
+          color: grey;
+          font-size: 1.2rem;
+          margin-left:3%;
         }
         @include mixin.breakpoint(phoneOnly) {
             .auth-form {
