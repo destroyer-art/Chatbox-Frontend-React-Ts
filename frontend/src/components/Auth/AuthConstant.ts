@@ -7,7 +7,7 @@ export enum AuthActionEnum {
 
 export enum AuthDataEnum {
   email = 'email',
-  password = 'password',
+  password = 'password'
 }
 
 export const AuthActionDescription = {

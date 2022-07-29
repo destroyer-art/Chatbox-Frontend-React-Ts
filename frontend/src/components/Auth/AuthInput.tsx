@@ -8,9 +8,10 @@ interface IProps {
   formType: string;
   icon: IconDefinition;
   handlePassword?: () => void;
+  toggleType?: string;
 }
 
-const AuthInput = ({ type, formType, icon }: IProps) => {
+const AuthInput = ({ type, formType, icon,toggleType }: IProps) => {
   const [input, setInput] = useState('');
   return (
     <div className="auth-input">
@@ -18,7 +19,7 @@ const AuthInput = ({ type, formType, icon }: IProps) => {
         <div className="auth-input-box">
           <input
             placeholder={`${capitalizeString(type)}`}
-            type={type}
+            type={toggleType || type}
             id={type}
             required
             defaultValue={input}

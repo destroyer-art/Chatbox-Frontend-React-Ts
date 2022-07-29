@@ -14,6 +14,7 @@ import { set } from '@features/Auth/Slice';
 
 const AuthForm = () => {
   const [checkboxStatus, setCheckboxStatus] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
   const initialAuthObj = {
     title: AuthActionEnum.login,
     description: AuthActionDescription[AuthActionEnum.login],
@@ -69,12 +70,17 @@ const AuthForm = () => {
           formType={authObj.title}
           icon={faKey}
           handlePassword={forgotPassword}
+          toggleType={passwordShown ? 'text' : AuthDataEnum.password}
         />
       )}
-
+      <div className='password-handler'>
+        <label>
+        <input type={'checkbox'} defaultChecked={passwordShown} onChange={() => setPasswordShown(!passwordShown)}/>Show Password
+      </label>
       <label>
         <input type={'checkbox'} defaultChecked={checkboxStatus} onChange={() => setCheckboxStatus(!checkboxStatus)} name='isRememberChosen'/>Remember Me
-      </label>
+      </label></div>
+      
       <AuthInput type={'submit'} formType={authObj.title} icon={fa0} />
       <AuthAction text={authObj.description} handleClick={handleClick} />
       <style jsx>{`
@@ -93,11 +99,12 @@ const AuthForm = () => {
           color: blue;
           cursor: pointer;
         }
-        label {
-          text-align: left;
+        .password-handler {
           color: grey;
           font-size: 1.2rem;
-          margin-left:3%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
         }
         @include mixin.breakpoint(phoneOnly) {
             .auth-form {
