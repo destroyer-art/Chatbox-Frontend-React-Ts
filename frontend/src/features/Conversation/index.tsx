@@ -5,7 +5,7 @@ import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 import { Dispatch } from '@reduxjs/toolkit';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { add, fetchHistory, reset, selectConversation } from './Slice';
 import TopBar from '@components/Conversation/TopBar';
 import { unset } from '@features/Auth/Slice';
@@ -36,7 +36,7 @@ const Conversation = ({ username, token }: IProp) => {
     dispatch(fetchHistory(token));
   }, []);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputMsg(event.target.value);
   };
 

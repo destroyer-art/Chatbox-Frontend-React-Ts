@@ -1,11 +1,12 @@
 import InputBar from '@components/InputBar';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { ChangeEvent } from 'react';
 
 interface IProps {
   inputMsg: string;
   handleMessage: () => void;
   /* eslint-disable */
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
   /* eslint-enable */
   icon: IconDefinition;
 }
