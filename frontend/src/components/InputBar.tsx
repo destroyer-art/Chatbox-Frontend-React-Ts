@@ -1,5 +1,6 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ChangeEvent } from 'react';
 
 interface IProps {
   placeholder: string;
@@ -8,7 +9,7 @@ interface IProps {
   bgColor?: string;
   handleInput: () => void;
   /* eslint-disable */
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
   /* eslint-enable */
   inputVal: string;
 }

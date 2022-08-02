@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "declaration": false,
     "rootDir": "src",
-    "outDir": "dist/",
+    "outDir": "out/",
     "lib": ["es7", "dom"],
     "skipLibCheck": true,
     "strict": true,
