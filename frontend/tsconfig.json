@@ -27,7 +27,8 @@
       "@api/*": ["src/api/*"],
       "@app/*": ["src/app/*"],
       "@helper/*": ["src/helper/*"]
-    }
+    },
+    "allowUnreachableCode": false
   },
   "include": ["src/**/*", "style/style-constant.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]

@@ -11,7 +11,7 @@ interface IProps {
   toggleType?: string;
 }
 
-const AuthInput = ({ type, formType, icon,toggleType }: IProps) => {
+const AuthInput = ({ type, formType, icon, toggleType }: IProps) => {
   const [input, setInput] = useState('');
   return (
     <div className="auth-input">
@@ -37,13 +37,15 @@ const AuthInput = ({ type, formType, icon,toggleType }: IProps) => {
           />
         </div>
       ) : (
-          <div><input value={capitalizeString(formType)} type={type} /></div>
-        
+        <div>
+          <input value={capitalizeString(formType)} type={type} />
+        </div>
       )}
       {/* {type === AuthDataEnum.password && formType === AuthActionEnum.login ? (
         <span onClick={handlePassword}>Forgot password</span>
       ) : null} */}
       <style jsx>{`
+        @use 'src/styles/_mixin.module.scss' as mixin;
         .auth-input {
           margin: 0.4rem 0;
           display: flex;
@@ -56,19 +58,25 @@ const AuthInput = ({ type, formType, icon,toggleType }: IProps) => {
         }
 
         input {
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           padding: 5%;
           border: hidden;
           margin: 2% 0 0 0;
-          width:80%;
+          width: 80%;
           font-family: inherit;
+        }
+
+        @include mixin.breakpoint(desktop) {
+          input {
+            font-size: 0.9rem;
+          }
         }
 
         input[type='submit'] {
           background-color: #32de84;
           color: white;
           cursor: pointer;
-          width:90%;
+          width: 90%;
         }
 
         span {

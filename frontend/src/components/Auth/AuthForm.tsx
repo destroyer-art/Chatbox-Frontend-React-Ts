@@ -27,7 +27,7 @@ const AuthForm = () => {
       email: event.target.email.value,
       password: event.target.password ? event.target.password.value : '',
       type: authObj.title,
-      isRememberChosen:checkboxStatus
+      isRememberChosen: checkboxStatus,
     };
     const response = await postAuth(data);
     if (response.accessToken) {
@@ -73,14 +73,26 @@ const AuthForm = () => {
           toggleType={passwordShown ? 'text' : AuthDataEnum.password}
         />
       )}
-      <div className='password-handler'>
+      <div className="password-handler">
         <label>
-        <input type={'checkbox'} defaultChecked={passwordShown} onChange={() => setPasswordShown(!passwordShown)}/>Show Password
-      </label>
-      <label>
-        <input type={'checkbox'} defaultChecked={checkboxStatus} onChange={() => setCheckboxStatus(!checkboxStatus)} name='isRememberChosen'/>Remember Me
-      </label></div>
-      
+          <input
+            type={'checkbox'}
+            defaultChecked={passwordShown}
+            onChange={() => setPasswordShown(!passwordShown)}
+          />
+          Show Password
+        </label>
+        <label>
+          <input
+            type={'checkbox'}
+            defaultChecked={checkboxStatus}
+            onChange={() => setCheckboxStatus(!checkboxStatus)}
+            name="isRememberChosen"
+          />
+          Remember Me
+        </label>
+      </div>
+
       <AuthInput type={'submit'} formType={authObj.title} icon={fa0} />
       <AuthAction text={authObj.description} handleClick={handleClick} />
       <style jsx>{`
@@ -106,9 +118,9 @@ const AuthForm = () => {
           flex-direction: row;
           justify-content: space-around;
         }
-        @include mixin.breakpoint(phoneOnly) {
-            .auth-form {
-              width:100%;
+        @include mixin.breakpoint(tabletLandscape) {
+          .auth-form {
+            width: 100%;
           }
         }
       `}</style>

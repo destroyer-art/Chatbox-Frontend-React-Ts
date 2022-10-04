@@ -1,21 +1,21 @@
-import { AuthCoverTitle } from "./AuthConstant";
+import { AuthCoverTitle } from './AuthConstant';
 const AuthCover = () => {
   const authTitle: string[] = AuthCoverTitle.split(' ');
   return (
     <div className="main">
       {authTitle.map((word: string, index: number) => (
-        <div key={'authTitle' + index} className='auth-title'>
+        <div key={'authTitle' + index} className="auth-title">
           {word.toUpperCase()} <br />
-        </div>))
-      }
+        </div>
+      ))}
       <style jsx>{`
         @use 'src/styles/_mixin.module.scss' as mixin;
         .main {
-          background: url("cover.png") no-repeat center bottom;
+          background: url('cover.png') no-repeat center bottom;
           width: 50%;
           margin-top: 6%;
-          padding:0 5%;
-          @include mixin.breakpoint(phoneOnly) {
+          padding: 0 5%;
+          @include mixin.breakpoint(tabletLandscape) {
             display: none;
           }
         }
