@@ -11,6 +11,7 @@ import TopBar from '@components/Conversation/TopBar';
 import { unset } from '@features/Auth/Slice';
 import MessageBar from '@components/Conversation/MessageBar';
 import TypingBox from '@components/Conversation/TypingBox';
+import { logOutWithGoogle } from 'src/services/firebase';
 
 interface IProp {
   username: string;
@@ -23,10 +24,10 @@ const Conversation = ({ username, token }: IProp) => {
   const socket = runSocket(token);
   const handleMessage = () => {
     if (!inputMsg) return;
-    socket.emit('msgToServer', inputMsg);
     socket.on('msgToServer', (message: string) => {
       console.log(message, 'msgToServerlai');
       dispatch(add(message));
+      socket.emit('msgToServer1', inputMsg);
     });
 
     setInputMsg('');
@@ -40,9 +41,10 @@ const Conversation = ({ username, token }: IProp) => {
     setInputMsg(event.target.value);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     dispatch(unset());
     dispatch(reset());
+    await logOutWithGoogle();
   };
 
   return (

@@ -26,7 +26,8 @@
       "@styles/*": ["src/styles/*"],
       "@api/*": ["src/api/*"],
       "@app/*": ["src/app/*"],
-      "@helper/*": ["src/helper/*"]
+      "@helper/*": ["src/helper/*"],
+      "@config/*": ["src/config/*"]
     },
     "allowUnreachableCode": false
   },

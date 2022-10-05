@@ -1,7 +1,13 @@
 import { postAuth } from '@api/auth';
 import { useAppDispatch } from '@app/hook';
 import Heading from '@components/Heading';
-import { fa0, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  fa0,
+  faKey,
+  faUser,
+  IconDefinition,
+} from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Dispatch, useState } from 'react';
 import AuthAction from './AuthAction';
 import {
@@ -11,6 +17,7 @@ import {
 } from './AuthConstant';
 import AuthInput from './AuthInput';
 import { set } from '@features/Auth/Slice';
+import { logInWithGoogle } from 'src/services/firebase';
 
 const AuthForm = () => {
   const [checkboxStatus, setCheckboxStatus] = useState(false);
@@ -37,7 +44,7 @@ const AuthForm = () => {
     }
   };
 
-  const handleClick = () => {
+  const handleSignUp = () => {
     if (authObj.title === AuthActionEnum.login) {
       setAuthObj({
         title: AuthActionEnum.signup,
@@ -52,6 +59,11 @@ const AuthForm = () => {
       title: AuthActionEnum.resetPassword,
       description: AuthActionDescription[AuthActionEnum.resetPassword],
     });
+  };
+
+  const handleGoogleLogin = async () => {
+    const googleUserCredential = await logInWithGoogle();
+    dispatch(set(googleUserCredential));
   };
 
   return (
@@ -94,7 +106,18 @@ const AuthForm = () => {
       </div>
 
       <AuthInput type={'submit'} formType={authObj.title} icon={fa0} />
-      <AuthAction text={authObj.description} handleClick={handleClick} />
+
+      <div className="google-option">
+        <div className={'horizontal-line'}></div>
+        <div className={'middle-word'}>OR</div>
+        <div className={'horizontal-line'}></div>
+      </div>
+      <AuthAction
+        text={'Log In With Google '}
+        handleClick={handleGoogleLogin}
+        icon={faGoogle as IconDefinition}
+      />
+      <AuthAction text={authObj.description} handleClick={handleSignUp} />
       <style jsx>{`
         @use 'src/styles/_mixin.module.scss' as mixin;
         .auth-form {
@@ -122,6 +145,25 @@ const AuthForm = () => {
           .auth-form {
             width: 100%;
           }
+        }
+
+        .google-option {
+          display: flex;
+          justify-content: space-around;
+          flex-flow: row wrap;
+          align-items: stretch;
+          width: 100%;
+          margin-top: 10%;
+        }
+
+        .horizontal-line {
+          flex-grow: 1;
+          flex-shrink: 1;
+          height: 1px;
+          position: relative;
+          top: 0.45em;
+          background-color: grey;
+          margin: 0 5%;
         }
       `}</style>
     </form>
